@@ -9,26 +9,13 @@ const VIDEOPLAYER_TIME = `videoplayer-current-time`;
 player.on('timeupdate', throttle(function (data) {
   // console.log(data);
 
-  // JSON.stringify(localStorage.setItem(VIDEOPLAYER_TIME, data.seconds));
-  // console.log(VIDEOPLAYER_TIME);
-
  localStorage.setItem(VIDEOPLAYER_TIME, data.seconds);
-  console.log(VIDEOPLAYER_TIME);
 
 }, 1000));
 
+const savedTime = localStorage.getItem(VIDEOPLAYER_TIME);
+if (savedTime) {
+  player.setCurrentTime(savedTime);
+}
+console.log(savedTime);
 
-// const setTime = player.setCurrentTime(JSON.parse(localStorage.getItem(VIDEOPLAYER_TIME)));
-// console.log(setTime);
-
-
-const setTime =  player.setCurrentTime(localStorage.getItem(VIDEOPLAYER_TIME));
-console.log(setTime);
-
-
-// function iframeAll ()  {
-   
-// }  
-
-// player.on(`play`, iframeAll) 
-// player.off(`play`, iframeAll) 
