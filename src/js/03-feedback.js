@@ -18,6 +18,9 @@ formRef.addEventListener('submit', event => {
 
   const formData = new FormData(formRef);
   formData.forEach((value, name) => console.log(value, name));
+
+  localStorage.removeItem(STORAGE_KEY);
+  event.currentTarget.reset();
 });
 
 formRef.addEventListener('input', throttle(inputForm, 500));
@@ -29,9 +32,9 @@ function inputForm(event) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(localFilter));
 }
 
-formRef.addEventListener('reset', event => {
-  localStorage.removeItem(STORAGE_KEY);
-});
+// formRef.addEventListener('reset', event => {
+//   localStorage.removeItem(STORAGE_KEY);
+// });
 
 function saveForm() {
   let localFilter = localStorage.getItem(STORAGE_KEY);
