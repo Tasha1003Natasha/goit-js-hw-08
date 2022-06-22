@@ -15,9 +15,8 @@ formRef.addEventListener('submit', event => {
   if (email.value === '' || message.value === '') {
     return alert('Please fill in all the fields!');
   }
-
-  const formData = new FormData(formRef);
-  formData.forEach((value, name) => console.log(value, name));
+  const data = {email:email.value,message:message.value};
+  console.log(data);
 
   localStorage.removeItem(STORAGE_KEY);
   event.currentTarget.reset();
@@ -32,16 +31,14 @@ function inputForm(event) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(localFilter));
 }
 
-// formRef.addEventListener('reset', event => {
-//   localStorage.removeItem(STORAGE_KEY);
-// });
-
 function saveForm() {
   let localFilter = localStorage.getItem(STORAGE_KEY);
+  // console.log(localFilter);
   if (localFilter) {
     localFilter = JSON.parse(localFilter);
-    Object.entries(localFilter).forEach(([name, value]) => {
-      formRef.elements[name].value = value;
-    });
+    console.log(localFilter);
+    formRef.email.value = localFilter.email
+    formRef.message.value = localFilter.message
+ 
   }
 }
